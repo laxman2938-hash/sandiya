@@ -240,15 +240,15 @@ export default function Home() {
       </section>
 
       {/* Our Story Section - Premium Design */}
-      <section className="py-12 md:py-24 px-3 sm:px-4 md:px-4 bg-white">
+      <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left - Image Section */}
             <div className="relative group animate-fade-in-up" style={{ animationDelay: '0s' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition duration-300"></div>
-              <div className="relative h-64 sm:h-80 md:h-96 lg:h-full lg:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
+              <div className="relative h-96 md:h-full md:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=700&fit=crop"
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop"
                   alt="Our Story"
                   className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -258,16 +258,6 @@ export default function Home() {
 
             {/* Right - Content Section */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Our Story</span>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-slate-900 leading-tight">
-                Nepal's Leading Ethical Recruitment Partner
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-slate-700 mb-3 md:mb-6 leading-relaxed">
-                Sandiya Human Resources Pvt. Ltd. is a trusted recruitment agency committed to connecting the right talent with the right opportunities across the globe. We follow a zero-cost recruitment policy to ensure candidates can seamlessly step into the global workforce without financial burden.
-              </p>
-              <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed">
-                Our mission is to empower individuals to reach their full potential while delivering exceptional value and results to the organizations they serve. With over 20 years of experience, we've successfully placed 10,000+ professionals worldwide.
-              </p>
               <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Our Story</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-slate-900 leading-tight">
                 Nepal's Leading Ethical Recruitment Partner

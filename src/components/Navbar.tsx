@@ -8,6 +8,7 @@ import Image from 'next/image';
 export default function Navbar() {
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedSubmenu, setExpandedSubmenu] = useState<number | null>(null);
 
   const navItems = [
     { label: 'Home', href: '/' },
@@ -108,15 +109,27 @@ export default function Navbar() {
           <div className="lg:hidden pb-4 sm:pb-6 space-y-1 border-t border-slate-100 animate-fade-in-down bg-slate-50">
             {navItems.map((item, idx) => (
               <div key={`mobile-nav-item-${idx}`}>
-                <Link
-                  href={item.href}
-                  className="block px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-slate-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition-all duration-300 font-semibold transform hover:translate-x-1"
-                  onClick={() => !item.submenu && setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
-                {item.submenu && (
-                  <div className="pl-3 sm:pl-4 space-y-1 bg-blue-50 rounded-lg my-1 py-2 border-l-2 border-blue-200">
+                {item.submenu ? (
+                  <button
+                    onClick={() => setExpandedSubmenu(expandedSubmenu === idx ? null : idx)}
+                    className="w-full text-left px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-slate-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition-all duration-300 font-semibold flex items-center justify-between"
+                  >
+                    <span>{item.label}</span>
+                    <span className={`transform transition-transform duration-300 ${expandedSubmenu === idx ? 'rotate-180' : ''}`}>
+                      ▾
+                    </span>
+                  </button>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="block px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-slate-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition-all duration-300 font-semibold transform hover:translate-x-1"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )}
+                {item.submenu && expandedSubmenu === idx && (
+                  <div className="pl-3 sm:pl-4 space-y-1 bg-blue-50 rounded-lg my-1 py-2 border-l-2 border-blue-200 animate-fade-in-down">
                     {item.submenu.map((subitem, subIdx) => (
                       <Link
                         key={`mobile-submenu-item-${idx}-${subIdx}`}

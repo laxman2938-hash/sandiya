@@ -172,7 +172,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-slate-700 pt-8 mt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-6">
             <p className="text-slate-400 text-sm text-center md:text-left">
               © {currentYear} <span className="font-bold text-blue-400">Sandiya Human Resources Pvt. Ltd.</span> All rights reserved.
             </p>
@@ -180,6 +180,21 @@ export default function Footer() {
               <Link href="/policy" className="text-slate-400 hover:text-blue-400 transition-colors">Privacy Policy</Link>
               <Link href="/legal-documents" className="text-slate-400 hover:text-blue-400 transition-colors">Legal Documents</Link>
             </div>
+          </div>
+          
+          {/* Design Credit */}
+          <div className="border-t border-slate-700 pt-4 text-center">
+            <p className="text-slate-500 text-xs">
+              Design & Development by{' '}
+              <a 
+                href="https://nexgenovate.com/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+              >
+                Nexgenovate
+              </a>
+            </p>
           </div>
         </div>
       </div>

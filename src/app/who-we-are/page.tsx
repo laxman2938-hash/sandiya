@@ -1,95 +1,118 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
+interface Mission {
+  title: string;
+  description: string;
+}
+
 export default function WhoWeArePage() {
+  const t = useTranslations();
+  const locale = useLocale();
+
+  const missions: Mission[] = [
+    {
+      title: 'Our Mission',
+      description: 'To create opportunities that empower individuals to achieve their career goals while supporting organizations with the right talent. We provide fair, ethical, and zero-cost recruitment services.',
+    },
+    {
+      title: 'Our Vision',
+      description: 'To be Nepal\'s leading ethical recruitment agency recognized globally for connecting exceptional talent with meaningful opportunities, fostering sustainable career growth.',
+    },
+    {
+      title: 'Our Commitment',
+      description: 'We are dedicated to providing fair, ethical, and zero-cost recruitment services. By fostering ethical recruitment practices, we deliver long-term value to candidates and employers.',
+    },
+  ];
+
+  const features = [
+    { icon: '🔒', title: 'Zero-Cost Policy', description: 'Fair recruitment without financial burden' },
+    { icon: '🌍', title: 'Global Network', description: 'Connect with employers worldwide' },
+    { icon: '📋', title: 'Ethical Standards', description: 'Transparent and responsible practices' },
+    { icon: '🎯', title: 'Perfect Match', description: 'Right job for the right person' },
+    { icon: '💼', title: 'Professional Support', description: 'Expert guidance throughout your journey' },
+    { icon: '🏆', title: 'Proven Track Record', description: 'Thousands of successful placements' },
+  ];
+
   return (
     <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white py-20 px-4">
+      <section className="bg-gradient-to-r from-blue-900 to-indigo-900 text-white py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold mb-4">Who We Are</h1>
-          <p className="text-xl text-blue-100">Leading foreign recruitment agency committed to ethical practices</p>
+          <p className="text-xl text-blue-100">
+            Leading foreign recruitment agency committed to ethical practices and global success
+          </p>
         </div>
       </section>
 
-      {/* Main Content Section */}
-      <section className="py-16 px-4 bg-white">
+      {/* Mission, Vision, Values Section */}
+      <section className="py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          {/* Company Introduction */}
-          <div className="mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-slate-900">Leading Foreign Recruitment Agency</h2>
-            <p className="text-lg text-slate-700 leading-relaxed mb-6">
-              Sandiya Human Resources Pvt. Ltd. has built a strong reputation and a remarkable presence in the recruitment industry. In addition to recruitment, we also provide translation services in many countries to help Nepali workers communicate effectively with their employers.
-            </p>
-            <p className="text-lg text-slate-700 leading-relaxed">
-              We follow a zero-cost recruitment policy, ensuring candidates can join the global workforce without financial barriers. Our mission is to connect the right people with the right opportunities, enabling individuals to reach their full potential while delivering outstanding results for the organizations they serve.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {missions.map((mission, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-blue-50 to-indigo-50 p-12 rounded-2xl border-l-4 border-blue-600 hover:shadow-lg transition"
+              >
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">{mission.title}</h3>
+                <p className="text-slate-700 leading-relaxed">{mission.description}</p>
+              </div>
+            ))}
           </div>
+        </div>
+      </section>
 
-          {/* Mission Statements Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4 text-blue-600">Our Mission</h3>
-              <p className="text-slate-700 leading-relaxed">
-                At Sandiya Human Resources Pvt. Ltd., our mission is to create opportunities that empower individuals to achieve their career goals while supporting organizations with the right talent. We are dedicated to providing fair, ethical, and zero-cost recruitment services that remove barriers for candidates and ensure a transparent, responsible hiring process.
+      {/* About Us Content */}
+      <section className="py-24 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold mb-6 text-slate-900">Leading foreign recruitment agency</h2>
+              <p className="text-lg text-slate-700 mb-6 leading-relaxed">
+                Sandiya Human Resources Pvt. Ltd. offers zero-cost recruitment services to empower candidates to join the global workforce while connecting the right talent with the right job.
+              </p>
+              <p className="text-lg text-slate-700 mb-6 leading-relaxed">
+                We have built a strong reputation in the recruitment industry through our commitment to fair practices. We follow a zero-cost recruitment policy, ensuring candidates can join the global workforce without financial barriers.
+              </p>
+              <p className="text-lg text-slate-700 leading-relaxed">
+                Our mission is to connect the right people with the right opportunities, enabling individuals to reach their full potential while delivering outstanding results for organizations worldwide.
               </p>
             </div>
-
-            <div className="bg-gradient-to-br from-indigo-50 to-purple-50 border-2 border-indigo-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4 text-indigo-600">Our Commitment</h3>
-              <p className="text-slate-700 leading-relaxed">
-                We strive to uphold the highest standards of integrity, accountability, and professionalism in everything we do. By fostering ethical recruitment practices and promoting the well-being of workers, we aim to deliver long-term value to candidates, employers, and the global communities we serve.
-              </p>
-            </div>
-          </div>
-
-          {/* Key Values */}
-          <div className="mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-slate-900 text-center">Our Core Values</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white border border-blue-200 rounded-xl p-6 hover:shadow-lg transition">
-                <div className="text-4xl mb-4">🤝</div>
-                <h4 className="text-xl font-bold mb-3 text-blue-600">Ethical Practice</h4>
-                <p className="text-slate-600">We maintain the highest standards of integrity and transparency in all our recruitment processes.</p>
-              </div>
-
-              <div className="bg-white border border-blue-200 rounded-xl p-6 hover:shadow-lg transition">
-                <div className="text-4xl mb-4">🌍</div>
-                <h4 className="text-xl font-bold mb-3 text-blue-600">Global Impact</h4>
-                <p className="text-slate-600">We connect talent across borders, creating opportunities for individuals and organizations worldwide.</p>
-              </div>
-
-              <div className="bg-white border border-blue-200 rounded-xl p-6 hover:shadow-lg transition">
-                <div className="text-4xl mb-4">💼</div>
-                <h4 className="text-xl font-bold mb-3 text-blue-600">Professional Excellence</h4>
-                <p className="text-slate-600">Our team brings extensive experience and dedication to every recruitment challenge we face.</p>
+            <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-12 text-white h-96 flex items-center justify-center hover:shadow-2xl transition">
+              <div className="text-center">
+                <div className="text-6xl mb-4">🌍</div>
+                <h3 className="text-2xl font-bold">Global Recruitment Leader</h3>
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* CTA Section */}
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl p-12 text-center">
-            <h3 className="text-3xl font-bold mb-4">Ready to Join Us?</h3>
-            <p className="text-blue-100 mb-8 text-lg">Explore opportunities with Sandiya HR today</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/employment-categories"
-                className="px-8 py-3 bg-white text-blue-600 font-bold rounded-lg hover:bg-blue-50 transition transform hover:scale-105"
+      {/* Why Choose Us */}
+      <section className="py-24 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-slate-900">Why Choose Sandiya HR?</h2>
+            <p className="text-xl text-slate-600">We're committed to your success</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, idx) => (
+              <div
+                key={idx}
+                className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-2xl border border-blue-100 hover:shadow-lg transition transform hover:-translate-y-1"
               >
-                View Opportunities
-              </Link>
-              <Link
-                href="/contact"
-                className="px-8 py-3 border-2 border-white text-white font-bold rounded-lg hover:bg-white hover:text-blue-600 transition transform hover:scale-105"
-              >
-                Contact Us
-              </Link>
-            </div>
+                <div className="text-5xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-bold mb-3 text-slate-900">{feature.title}</h3>
+                <p className="text-slate-600">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
     </main>
   );
 }
-

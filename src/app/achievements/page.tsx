@@ -65,11 +65,7 @@ export default function AchievementsPage() {
       {/* Achievements Grid - Image Only */}
       <section className="py-12 md:py-24 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Timeline of Success</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 text-slate-900">Our Achievements</h2>
-            <p className="text-base md:text-xl text-slate-600 px-2">Milestones that define our commitment to excellence</p>
-          </div>
+        
 
           {achievements.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
