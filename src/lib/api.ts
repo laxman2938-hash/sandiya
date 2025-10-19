@@ -1,6 +1,6 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
-// Fetch wrapper with error handling
+// Fetch wrapper with error handling and timeout
 async function fetchAPI<T>(
   endpoint: string,
   options?: RequestInit
@@ -8,22 +8,38 @@ async function fetchAPI<T>(
   const url = `${API_BASE_URL}${endpoint}`;
 
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(url, {
       ...options,
+      signal: controller.signal,
       headers: {
         'Content-Type': 'application/json',
         ...options?.headers,
       },
     });
 
+    clearTimeout(timeoutId);
+
     if (!response.ok) {
+      if (response.status === 404) {
+        console.warn(`API endpoint not found: ${endpoint}`);
+        return [] as any;
+      }
       throw new Error(`API error: ${response.status} ${response.statusText}`);
     }
 
-    return await response.json();
-  } catch (error) {
-    console.error(`API call failed: ${endpoint}`, error);
-    throw error;
+    const data = await response.json();
+    return data;
+  } catch (error: any) {
+    if (error.name === 'AbortError') {
+      console.warn(`API call timeout: ${endpoint}`);
+    } else {
+      console.error(`API call failed: ${endpoint}`, error?.message);
+    }
+    // Return empty array or object instead of throwing to prevent page break
+    return [] as any;
   }
 }
 

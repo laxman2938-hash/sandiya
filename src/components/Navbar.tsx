@@ -31,23 +31,23 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-white/95 shadow-lg sticky top-0 z-40 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="flex justify-between items-center h-20">
+    <nav className="bg-white/95 shadow-lg sticky top-0 z-40 backdrop-blur-md border-b border-blue-100">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+        <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
-            <div className="w-12 h-12 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-blue-600/50 overflow-hidden bg-white">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 flex-shrink-0 group">
+            <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-blue-600/50 overflow-hidden bg-white">
               <Image 
                 src="/sandhaya.png" 
                 alt="Sandiya HR Logo" 
                 width={48} 
                 height={48}
-                className="object-contain"
+                className="object-contain w-full h-full"
               />
             </div>
             <div className="hidden sm:block">
-              <div className="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Sandiya HR</div>
-              <div className="text-xs text-blue-600 font-semibold">Ethical Recruitment</div>
+              <div className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Sandiya HR</div>
+              <div className="text-xs text-blue-600 font-semibold hidden md:block">Ethical Recruitment</div>
             </div>
           </Link>
 
@@ -87,7 +87,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-block px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 relative overflow-hidden group"
+              className="hidden sm:inline-block px-4 sm:px-6 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 relative overflow-hidden group text-sm sm:text-base"
             >
               <span className="relative z-10">Contact Us</span>
               <span className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
@@ -96,7 +96,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden text-slate-700 text-2xl transform hover:scale-110 transition-transform duration-300"
+              className="lg:hidden text-slate-700 text-xl sm:text-2xl transform hover:scale-110 transition-transform duration-300 p-2 -mr-2"
             >
               {isOpen ? '✕' : '☰'}
             </button>
@@ -105,23 +105,23 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="lg:hidden pb-6 space-y-2 border-t border-slate-100 animate-fade-in-down">
+          <div className="lg:hidden pb-4 sm:pb-6 space-y-1 border-t border-slate-100 animate-fade-in-down bg-slate-50">
             {navItems.map((item, idx) => (
               <div key={`mobile-nav-item-${idx}`}>
                 <Link
                   href={item.href}
-                  className="block px-4 py-3 text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-all duration-300 font-semibold transform hover:translate-x-1"
+                  className="block px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base text-slate-700 hover:bg-blue-100 hover:text-blue-600 rounded-lg transition-all duration-300 font-semibold transform hover:translate-x-1"
                   onClick={() => !item.submenu && setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
                 {item.submenu && (
-                  <div className="pl-4 space-y-1 bg-blue-50/30 rounded-lg my-1 py-2">
+                  <div className="pl-3 sm:pl-4 space-y-1 bg-blue-50 rounded-lg my-1 py-2 border-l-2 border-blue-200">
                     {item.submenu.map((subitem, subIdx) => (
                       <Link
                         key={`mobile-submenu-item-${idx}-${subIdx}`}
                         href={subitem.href}
-                        className="block px-4 py-2 text-sm text-slate-600 hover:text-blue-600 rounded-lg transition-all duration-300 transform hover:translate-x-1"
+                        className="block px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm text-slate-600 hover:text-blue-600 hover:bg-white rounded transition-all duration-300 transform hover:translate-x-1"
                         onClick={() => setIsOpen(false)}
                       >
                         {subitem.label}
@@ -131,10 +131,10 @@ export default function Navbar() {
                 )}
               </div>
             ))}
-            <div className="flex gap-2 px-4 pt-4 border-t border-slate-100">
+            <div className="flex gap-2 px-3 sm:px-4 pt-3 sm:pt-4 border-t border-slate-200">
               <Link
                 href="/contact"
-                className="flex-1 px-3 py-2 text-xs font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg text-center transition-all duration-300 transform hover:scale-105"
+                className="flex-1 px-3 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg text-center transition-all duration-300 transform hover:scale-105 active:scale-95"
                 onClick={() => setIsOpen(false)}
               >
                 Contact Us

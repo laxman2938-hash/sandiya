@@ -60,17 +60,35 @@ export default function Home() {
     const fetchTestimonials = async () => {
       try {
         setTestimonialsLoading(true);
-        const response: any = await api.getTestimonials();
-        const data = Array.isArray(response) ? response : response.data?.results || response.data || [];
-        setTestimonials(data);
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+        
+        const response: any = await Promise.race([
+          api.getTestimonials(),
+          new Promise((_, reject) => 
+            setTimeout(() => reject(new Error('Fetch timeout')), 8000)
+          )
+        ]);
+        
+        clearTimeout(timeoutId);
+        
+        const data = Array.isArray(response) ? response : response?.data?.results || response?.data || [];
+        setTestimonials(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error('Error fetching testimonials:', err);
+        // Don't break the page - just show no testimonials
         setTestimonials([]);
       } finally {
         setTestimonialsLoading(false);
       }
     };
-    fetchTestimonials();
+    
+    // Add a small delay to prevent race conditions
+    const timer = setTimeout(() => {
+      fetchTestimonials();
+    }, 500);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const stats = [
@@ -118,26 +136,26 @@ export default function Home() {
               <div className="absolute -bottom-8 left-0 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 8s ease-in-out infinite 2s' }}></div>
 
               {/* Left Side - Text Content (Full Width Mobile, 50% Desktop) */}
-              <div className="relative z-10 w-full md:w-1/2 px-4 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24 text-center md:text-left flex flex-col justify-center h-screen md:h-auto">
-                <span className="inline-block bg-blue-500/20 backdrop-blur-md border border-blue-400/30 rounded-full px-4 md:px-6 py-2 mb-4 md:mb-6 text-xs md:text-sm font-semibold text-white w-max mx-auto md:mx-0">
+              <div className="relative z-10 w-full md:w-1/2 px-3 sm:px-4 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24 text-center md:text-left flex flex-col justify-center h-screen md:h-auto">
+                <span className="inline-block bg-blue-500/20 backdrop-blur-md border border-blue-400/30 rounded-full px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2 mb-3 sm:mb-4 md:mb-6 text-xs sm:text-xs md:text-sm font-semibold text-white w-max mx-auto md:mx-0">
                   ✨ {idx === 0 ? 'Welcome to Sandiya HR' : idx === 1 ? 'Our Commitment' : 'Join Our Community'}
                 </span>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white animate-fade-in-up">
+                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-white animate-fade-in-up">
                   {slide.title}
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl text-blue-100 mb-8 md:mb-12 max-w-2xl mx-auto md:mx-0">
+                <p className="text-sm sm:text-base md:text-xl text-blue-100 mb-6 sm:mb-8 md:mb-12 max-w-2xl mx-auto md:mx-0 line-clamp-3 sm:line-clamp-none">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap justify-center md:justify-start">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 flex-wrap justify-center md:justify-start">
                   <Link
                     href="/gallery"
-                    className="bg-white text-blue-900 px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-sm md:text-base"
+                    className="bg-white text-blue-900 px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-xs sm:text-sm md:text-base"
                   >
                     View Our Work
                   </Link>
                   <Link
                     href="/contact"
-                    className="border-2 border-white text-white px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-sm md:text-base"
+                    className="border-2 border-white text-white px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-xs sm:text-sm md:text-base"
                   >
                     Get in Touch
                   </Link>
@@ -222,15 +240,15 @@ export default function Home() {
       </section>
 
       {/* Our Story Section - Premium Design */}
-      <section className="py-12 md:py-24 px-4 bg-white">
+      <section className="py-12 md:py-24 px-3 sm:px-4 md:px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
             {/* Left - Image Section */}
             <div className="relative group animate-fade-in-up" style={{ animationDelay: '0s' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition duration-300"></div>
-              <div className="relative h-96 md:h-full md:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
+              <div className="relative h-64 sm:h-80 md:h-96 lg:h-full lg:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop"
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=700&fit=crop"
                   alt="Our Story"
                   className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -240,6 +258,16 @@ export default function Home() {
 
             {/* Right - Content Section */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Our Story</span>
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 md:mb-6 text-slate-900 leading-tight">
+                Nepal's Leading Ethical Recruitment Partner
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-slate-700 mb-3 md:mb-6 leading-relaxed">
+                Sandiya Human Resources Pvt. Ltd. is a trusted recruitment agency committed to connecting the right talent with the right opportunities across the globe. We follow a zero-cost recruitment policy to ensure candidates can seamlessly step into the global workforce without financial burden.
+              </p>
+              <p className="text-sm sm:text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed">
+                Our mission is to empower individuals to reach their full potential while delivering exceptional value and results to the organizations they serve. With over 20 years of experience, we've successfully placed 10,000+ professionals worldwide.
+              </p>
               <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Our Story</span>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-slate-900 leading-tight">
                 Nepal's Leading Ethical Recruitment Partner
@@ -290,7 +318,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
             {features.map((feature, idx) => (
               <div
                 key={idx}
@@ -300,10 +328,10 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-100 to-slate-50 rounded-2xl group-hover:opacity-0 transition duration-300"></div>
                 <div className={`absolute inset-0 bg-gradient-to-br ${feature.gradient} rounded-2xl opacity-0 group-hover:opacity-100 transition duration-300`}></div>
                 
-                <div className="relative p-6 md:p-8 rounded-2xl border border-slate-200 group-hover:border-transparent transition h-full flex flex-col">
-                  <div className="text-4xl md:text-5xl mb-4 transform group-hover:scale-125 transition">{feature.icon}</div>
-                  <h3 className="text-lg md:text-xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-white transition">{feature.title}</h3>
-                  <p className="text-sm md:text-base text-slate-600 group-hover:text-white/90 transition flex-grow">{feature.description}</p>
+                <div className="relative p-5 sm:p-6 md:p-8 rounded-2xl border border-slate-200 group-hover:border-transparent transition h-full flex flex-col">
+                  <div className="text-3xl sm:text-4xl md:text-5xl mb-3 md:mb-4 transform group-hover:scale-125 transition">{feature.icon}</div>
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-2 md:mb-3 text-slate-900 group-hover:text-white transition">{feature.title}</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 group-hover:text-white/90 transition flex-grow">{feature.description}</p>
                 </div>
               </div>
             ))}
