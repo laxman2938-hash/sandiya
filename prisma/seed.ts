@@ -37,14 +37,24 @@ async function main() {
   await prisma.teamMember.createMany({
     data: [
       {
-        name: 'Ram Sharma',
-        designation: 'CEO & Founder',
-        image: 'https://via.placeholder.com/200?text=Ram+Sharma',
+        name: 'Narottam Poudel',
+        designation: 'Recruitment Expert',
+        image: 'https://via.placeholder.com/200?text=Narottam+Poudel',
       },
       {
-        name: 'Sita Poudel',
+        name: 'Poonam Shrestha',
         designation: 'HR Manager',
-        image: 'https://via.placeholder.com/200?text=Sita+Poudel',
+        image: 'https://via.placeholder.com/200?text=Poonam+Shrestha',
+      },
+      {
+        name: 'Ganesh Gharti',
+        designation: 'Operations Lead',
+        image: 'https://via.placeholder.com/200?text=Ganesh+Gharti',
+      },
+      {
+        name: 'Shiva Khatri',
+        designation: 'Client Relations',
+        image: 'https://via.placeholder.com/200?text=Shiva+Khatri',
       },
     ],
   });
@@ -109,14 +119,14 @@ async function main() {
   await prisma.testimonial.createMany({
     data: [
       {
-        name: 'John Doe',
-        position: 'Project Manager',
-        photo: 'https://via.placeholder.com/100?text=John',
+        name: 'Sita Gurung',
+        position: 'Hospitality Sector Employee',
+        photo: 'https://via.placeholder.com/100?text=Sita+Gurung',
       },
       {
-        name: 'Jane Smith',
-        position: 'HR Director',
-        photo: 'https://via.placeholder.com/100?text=Jane',
+        name: 'Mamta Shrestha',
+        position: 'Global Tech Solutions',
+        photo: 'https://via.placeholder.com/100?text=Mamta+Shrestha',
       },
     ],
   });

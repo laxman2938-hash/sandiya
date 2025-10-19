@@ -88,21 +88,15 @@ export default function Home() {
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: '🌍',
-      title: 'Global Opportunities',
-      description: 'Connect with worldwide employers and career prospects',
-      gradient: 'from-purple-500 to-pink-500',
-    },
-    {
       icon: '📋',
-      title: 'Ethical Standards',
-      description: 'Transparent and responsible hiring practices',
+      title: 'Responsible Recruitment Policy',
+      description: 'We promote responsible recruitment policies that support well-being and growth',
       gradient: 'from-green-500 to-emerald-500',
     },
     {
-      icon: '🎯',
-      title: 'Perfect Match',
-      description: 'Find the right job that suits your skills and goals',
+      icon: '💬',
+      title: 'Third-party Helpline & Email Support',
+      description: 'Continuous assistance and quick resolutions for ethical concerns',
       gradient: 'from-orange-500 to-red-500',
     },
   ];
@@ -236,7 +230,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition duration-300"></div>
               <div className="relative h-96 md:h-full md:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=700&fit=crop"
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1200&h=800&fit=crop"
                   alt="Our Story"
                   className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                 />
@@ -427,11 +421,11 @@ export default function Home() {
 
               <div className="space-y-4 md:space-y-6">
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/15 transition group">
-                  <p className="text-sm md:text-base font-semibold text-blue-300 mb-2 uppercase tracking-wide">Monday to Friday</p>
+                  <p className="text-sm md:text-base font-semibold text-blue-300 mb-2 uppercase tracking-wide">Sunday to Friday</p>
                   <p className="text-2xl md:text-4xl font-bold text-white">10:00 AM - 06:00 PM</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-6 hover:bg-white/15 transition group">
-                  <p className="text-sm md:text-base font-semibold text-blue-300 mb-2 uppercase tracking-wide">Saturday & Sunday</p>
+                  <p className="text-sm md:text-base font-semibold text-blue-300 mb-2 uppercase tracking-wide">Saturday</p>
                   <p className="text-2xl md:text-4xl font-bold text-white">Closed</p>
                 </div>
               </div>
