@@ -236,7 +236,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl blur-2xl opacity-20 group-hover:opacity-30 transition duration-300"></div>
               <div className="relative h-96 md:h-full md:min-h-96 rounded-3xl overflow-hidden border-2 border-blue-100 shadow-2xl">
                 <img
-                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=700&fit=crop"
+                  src="https://images.unsplash.com/photo-1552994431-80fcb63ecea0?w=800&h=700&fit=crop"
                   alt="Our Story"
                   className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
                 />
