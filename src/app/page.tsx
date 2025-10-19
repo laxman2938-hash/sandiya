@@ -84,19 +84,19 @@ export default function Home() {
     {
       icon: '🔒',
       title: 'Zero Cost Policy',
-      description: 'Fair recruitment without financial burden on candidates',
+      description: 'We strictly follow a zero-cost recruitment policy to eliminate financial burdens on candidates',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: '📋',
       title: 'Responsible Recruitment Policy',
-      description: 'We promote responsible recruitment policies that support well-being and growth',
+      description: 'We promote responsible recruitment policies that support well-being and growth worldwide',
       gradient: 'from-green-500 to-emerald-500',
     },
     {
       icon: '💬',
       title: 'Third-party Helpline & Email Support',
-      description: 'Continuous assistance and quick resolutions for ethical concerns',
+      description: 'Continuous assistance for ethical concerns with quick, confidential, and effective resolutions',
       gradient: 'from-orange-500 to-red-500',
     },
   ];
