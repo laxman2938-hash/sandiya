@@ -27,7 +27,7 @@ export const seoConfig = {
     },
     about: {
       title: 'About Us - Sandiya Human Resources',
-      description: 'Learn about our team and commitment to ethical recruitment practices. 20+ years of industry experience.',
+      description: 'Learn about our team and commitment to ethical recruitment practices. 10+ years of industry experience.',
       keywords: 'about sandiya hr, recruitment company, team, ethical practices',
     },
     gallery: {

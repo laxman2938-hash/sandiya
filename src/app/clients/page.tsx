@@ -107,7 +107,7 @@ export default function ClientsPage() {
               <div className="space-y-3 md:space-y-4">
                 {[
                   '500+ Global Client Network',
-                  '20+ Years of Industry Experience',
+                  '10+ Years of Industry Experience',
                   'Dedicated Account Management'
                 ].map((stat, idx) => (
                   <div key={idx} className="flex items-center gap-2 md:gap-3">

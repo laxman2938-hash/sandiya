@@ -93,7 +93,7 @@ export default function Home() {
 
   const stats = [
     { number: '10K+', label: 'Successful Placements', icon: '✅' },
-    { number: '20+', label: 'Years Experience', icon: '⭐' },
+    { number: '10+', label: 'Years Experience', icon: '⭐' },
     { number: '500+', label: 'Partner Companies', icon: '🏢' },
     { number: '50+', label: 'Countries', icon: '🌍' },
   ];
@@ -122,64 +122,105 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white overflow-hidden">
       {/* Hero Slider Section - Ultra Modern with Image */}
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative w-full min-h-screen">
         {sliderImages.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              idx === currentSlide ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-opacity duration-1000 w-full h-full ${
+              idx === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
           >
-            <div className={`relative bg-gradient-to-br ${slide.color} h-full flex flex-col md:flex-row items-center overflow-hidden`}>
-              {/* Animated Background Orbs */}
-              <div className="absolute top-0 right-0 w-72 md:w-96 h-72 md:h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 6s ease-in-out infinite' }}></div>
-              <div className="absolute -bottom-8 left-0 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 8s ease-in-out infinite 2s' }}></div>
-
-              {/* Left Side - Text Content (Full Width Mobile, 50% Desktop) */}
-              <div className="relative z-10 w-full md:w-1/2 px-3 sm:px-4 md:px-8 lg:px-12 py-12 md:py-20 lg:py-24 text-center md:text-left flex flex-col justify-center h-screen md:h-auto">
-                <span className="inline-block bg-blue-500/20 backdrop-blur-md border border-blue-400/30 rounded-full px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 md:py-2 mb-3 sm:mb-4 md:mb-6 text-xs sm:text-xs md:text-sm font-semibold text-white w-max mx-auto md:mx-0">
+            {/* Mobile: Background Image with Content Overlay */}
+            <div 
+              className="md:hidden absolute inset-0 w-full h-full"
+              style={{
+                backgroundImage: `url(${slide.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              {/* Gradient Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
+              
+              {/* Mobile Content */}
+              <div className="relative z-10 h-full w-full px-4 py-12 sm:py-16 flex flex-col justify-center text-center">
+                <span className="inline-block bg-blue-500/30 backdrop-blur-md border border-blue-400/30 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 mb-2 sm:mb-3 text-xs sm:text-xs font-semibold text-white w-fit mx-auto">
                   ✨ {idx === 0 ? 'Welcome to Sandiya HR' : idx === 1 ? 'Our Commitment' : 'Join Our Community'}
                 </span>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight text-white animate-fade-in-up">
+                <h1 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 leading-tight text-white drop-shadow-lg">
                   {slide.title}
                 </h1>
-                <p className="text-sm sm:text-base md:text-xl text-blue-100 mb-6 sm:mb-8 md:mb-12 max-w-2xl mx-auto md:mx-0 line-clamp-3 sm:line-clamp-none">
+                <p className="text-xs sm:text-sm text-blue-100 mb-5 sm:mb-6 max-w-sm mx-auto drop-shadow-md">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 flex-wrap justify-center md:justify-start">
+                <div className="flex flex-col gap-2 sm:gap-2.5 justify-center">
                   <Link
                     href="/gallery"
-                    className="bg-white text-blue-900 px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-xs sm:text-sm md:text-base"
+                    className="bg-white text-blue-900 px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-xs sm:text-sm w-full text-center"
                   >
                     View Our Work
                   </Link>
                   <Link
                     href="/contact"
-                    className="border-2 border-white text-white px-4 sm:px-6 md:px-10 py-2 sm:py-3 md:py-4 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-xs sm:text-sm md:text-base"
+                    className="border-2 border-white text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-xs sm:text-sm w-full text-center"
                   >
                     Get in Touch
                   </Link>
                 </div>
               </div>
+            </div>
 
-              {/* Right Side - Image Section (Hidden Mobile, 50% Desktop) */}
-              <div className="hidden md:flex w-1/2 items-center justify-center py-20 lg:py-24 px-4 md:px-8 relative z-10 h-screen md:h-auto">
-                <div className="relative w-full max-w-md h-96 md:h-full md:max-h-96 lg:max-h-[500px]">
-                  {/* Image Container with Gradient Border */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-3xl opacity-0 blur-2xl -z-10"></div>
-                  <div className="relative h-full w-full rounded-3xl overflow-hidden border-2 border-white/20 backdrop-blur-xl shadow-2xl transform hover:scale-105 transition duration-500">
-                    {/* Hero Image - Different for Each Slide */}
-                    <img
-                      src={slide.image}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                    />
-                    {/* Overlay Gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                    {/* Icon with Animation */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                      <div className="text-7xl transform hover:scale-125 transition animate-bounce">
-                        {idx === 0 ? '🌍' : idx === 1 ? '💰' : '🎯'}
+            {/* Desktop: Gradient Background with Side-by-side Layout */}
+            <div className={`hidden md:flex bg-gradient-to-br ${slide.color} h-full w-full flex-row items-center justify-center overflow-hidden relative`}>
+              {/* Animated Background Orbs */}
+              <div className="absolute top-0 right-0 w-72 md:w-96 h-72 md:h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 6s ease-in-out infinite' }}></div>
+              <div className="absolute -bottom-8 left-0 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 8s ease-in-out infinite 2s' }}></div>
+
+              {/* Container for content - prevents overlapping */}
+              <div className="w-full h-full flex flex-row items-center justify-center relative z-10">
+                {/* Left Side - Text Content */}
+                <div className="w-1/2 px-6 lg:px-8 py-8 flex flex-col justify-center text-left">
+                  <span className="inline-block bg-blue-500/20 backdrop-blur-md border border-blue-400/30 rounded-full px-4 md:px-4 py-1 md:py-2 mb-4 md:mb-4 text-sm font-semibold text-white w-fit">
+                    ✨ {idx === 0 ? 'Welcome to Sandiya HR' : idx === 1 ? 'Our Commitment' : 'Join Our Community'}
+                  </span>
+                  <h1 className="text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
+                    {slide.title}
+                  </h1>
+                  <p className="text-base text-blue-100 mb-8 max-w-xl">
+                    {slide.subtitle}
+                  </p>
+                  <div className="flex flex-row gap-3 justify-start">
+                    <Link
+                      href="/gallery"
+                      className="bg-white text-blue-900 px-6 md:px-6 py-2.5 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-sm"
+                    >
+                      View Our Work
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="border-2 border-white text-white px-6 md:px-6 py-2.5 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-sm"
+                    >
+                      Get in Touch
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right Side - Image Section */}
+                <div className="w-1/2 px-6 lg:px-8 py-8 flex items-center justify-center">
+                  <div className="relative w-full max-w-md h-72">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl opacity-20 blur-2xl -z-10"></div>
+                    <div className="relative h-full w-full rounded-2xl overflow-hidden border-2 border-white/20 backdrop-blur-xl shadow-2xl transform hover:scale-105 transition duration-500">
+                      <img
+                        src={slide.image}
+                        alt={slide.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
+                        <div className="text-6xl transform hover:scale-125 transition animate-bounce">
+                          {idx === 0 ? '🌍' : idx === 1 ? '💰' : '🎯'}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -190,13 +231,13 @@ export default function Home() {
         ))}
 
         {/* Slider Navigation Dots */}
-        <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 z-20 flex gap-3">
+        <div className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex gap-2 md:gap-3">
           {sliderImages.map((_, idx) => (
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
               className={`rounded-full transition-all ${
-                idx === currentSlide ? 'bg-white w-6 md:w-8 h-3 md:h-3' : 'bg-white/50 hover:bg-white/75 w-3 h-3'
+                idx === currentSlide ? 'bg-white w-6 md:w-7 h-2.5 md:h-3' : 'bg-white/50 hover:bg-white/75 w-2.5 h-2.5 md:w-3 md:h-3'
               }`}
               aria-label={`Slide ${idx + 1}`}
             />
@@ -206,14 +247,14 @@ export default function Home() {
         {/* Slider Navigation Arrows */}
         <button
           onClick={() => setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length)}
-          className="absolute left-3 md:left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 md:p-4 rounded-full transition text-xl md:text-2xl"
+          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
           aria-label="Previous slide"
         >
           ←
         </button>
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % sliderImages.length)}
-          className="absolute right-3 md:right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-2 md:p-4 rounded-full transition text-xl md:text-2xl"
+          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
           aria-label="Next slide"
         >
           →
@@ -266,13 +307,13 @@ export default function Home() {
                 Sandiya Human Resources Pvt. Ltd. is a trusted recruitment agency committed to connecting the right talent with the right opportunities across the globe. We follow a zero-cost recruitment policy to ensure candidates can seamlessly step into the global workforce without financial burden.
               </p>
               <p className="text-base md:text-lg text-slate-600 mb-6 md:mb-8 leading-relaxed">
-                Our mission is to empower individuals to reach their full potential while delivering exceptional value and results to the organizations they serve. With over 20 years of experience, we've successfully placed 10,000+ professionals worldwide.
+                Our mission is to empower individuals to reach their full potential while delivering exceptional value and results to the organizations they serve. With over 10 years of experience, we've successfully placed 10,000+ professionals worldwide.
               </p>
               
               {/* Stats in Story Section */}
               <div className="grid grid-cols-3 gap-4 mb-8 md:mb-10">
                 {[
-                  { number: '20+', label: 'Years' },
+                  { number: '10+', label: 'Years' },
                   { number: '10K+', label: 'Placements' },
                   { number: '50+', label: 'Countries' },
                 ].map((stat, idx) => (
