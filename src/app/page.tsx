@@ -136,10 +136,10 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 md:gap-4 flex-wrap justify-center md:justify-start">
                   <Link
-                    href="/recruitment"
+                    href="/gallery"
                     className="bg-white text-blue-900 px-6 md:px-10 py-3 md:py-4 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-sm md:text-base"
                   >
-                    Explore Opportunities
+                    View Our Work
                   </Link>
                   <Link
                     href="/contact"
@@ -272,7 +272,7 @@ export default function Home() {
               </div>
 
               <Link
-                href="/who-we-are"
+                href="/about-us"
                 className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-lg hover:shadow-lg hover:shadow-blue-600/50 transition transform hover:scale-105 hover:-translate-y-0.5"
               >
                 <span>Read Our Full Story</span>
