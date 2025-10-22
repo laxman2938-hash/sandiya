@@ -20,15 +20,15 @@ async function main() {
     data: [
       {
         title: 'Office Space',
-        image: 'https://via.placeholder.com/400x300?text=Office+Space',
+        image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop',
       },
       {
         title: 'Team Meeting',
-        image: 'https://via.placeholder.com/400x300?text=Team+Meeting',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
       },
       {
         title: 'Training Session',
-        image: 'https://via.placeholder.com/400x300?text=Training+Session',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
       },
     ],
   });
@@ -39,22 +39,22 @@ async function main() {
       {
         name: 'Narottam Poudel',
         designation: 'Recruitment Expert',
-        image: 'https://via.placeholder.com/200?text=Narottam+Poudel',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop',
       },
       {
         name: 'Poonam Shrestha',
         designation: 'HR Manager',
-        image: 'https://via.placeholder.com/200?text=Poonam+Shrestha',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop',
       },
       {
         name: 'Ganesh Gharti',
         designation: 'Operations Lead',
-        image: 'https://via.placeholder.com/200?text=Ganesh+Gharti',
+        image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop',
       },
       {
         name: 'Shiva Khatri',
         designation: 'Client Relations',
-        image: 'https://via.placeholder.com/200?text=Shiva+Khatri',
+        image: 'https://images.unsplash.com/photo-1519085360771-9852372b9c5f?w=200&h=200&fit=crop',
       },
     ],
   });
@@ -64,11 +64,11 @@ async function main() {
     data: [
       {
         title: 'Full-Time Position',
-        image: 'https://via.placeholder.com/300x200?text=Full+Time',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
       {
         title: 'Contract Position',
-        image: 'https://via.placeholder.com/300x200?text=Contract',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
     ],
   });
@@ -78,11 +78,11 @@ async function main() {
     data: [
       {
         title: 'ISO 9001:2015 Certified',
-        image: 'https://via.placeholder.com/300x200?text=ISO+Certified',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
       {
         title: '1000+ Placements',
-        image: 'https://via.placeholder.com/300x200?text=1000+Placements',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
     ],
   });
@@ -92,11 +92,11 @@ async function main() {
     data: [
       {
         name: 'TechCorp Nepal',
-        logo: 'https://via.placeholder.com/200?text=TechCorp',
+        logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop',
       },
       {
         name: 'Global Logistics',
-        logo: 'https://via.placeholder.com/200?text=Global+Logistics',
+        logo: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&h=200&fit=crop',
       },
     ],
   });
@@ -106,11 +106,11 @@ async function main() {
     data: [
       {
         title: 'Privacy Policy',
-        image: 'https://via.placeholder.com/300x200?text=Privacy',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
       {
         title: 'Terms of Service',
-        image: 'https://via.placeholder.com/300x200?text=Terms',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=200&fit=crop',
       },
     ],
   });
@@ -121,12 +121,12 @@ async function main() {
       {
         name: 'Sita Gurung',
         position: 'Hospitality Sector Employee',
-        photo: 'https://via.placeholder.com/100?text=Sita+Gurung',
+        photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
       },
       {
         name: 'Mamta Shrestha',
         position: 'Global Tech Solutions',
-        photo: 'https://via.placeholder.com/100?text=Mamta+Shrestha',
+        photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
       },
     ],
   });
@@ -136,11 +136,11 @@ async function main() {
     data: [
       {
         title: 'Sample Demand Letter 1',
-        image: 'https://via.placeholder.com/300x400?text=Demand+Letter',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=400&fit=crop',
       },
       {
         title: 'Sample Demand Letter 2',
-        image: 'https://via.placeholder.com/300x400?text=Demand+Letter',
+        image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&h=400&fit=crop',
       },
     ],
   });

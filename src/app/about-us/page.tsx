@@ -95,7 +95,17 @@ export default function AboutUsPage() {
                         alt={member.name} 
                         width={96} 
                         height={96}
+                        priority={false}
+                        loading="lazy"
+                        unoptimized
                         className="object-cover w-full h-full"
+                        onError={(e) => {
+                          // Fallback to initials if image fails
+                          const parent = e.currentTarget.parentElement;
+                          if (parent) {
+                            parent.innerHTML = `<span class="text-white text-3xl font-bold">${member.name.charAt(0)}</span>`;
+                          }
+                        }}
                       />
                     ) : (
                       <span className="text-white text-3xl font-bold">{member.name.charAt(0)}</span>

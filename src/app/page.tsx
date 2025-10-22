@@ -61,12 +61,12 @@ export default function Home() {
       try {
         setTestimonialsLoading(true);
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
         
         const response: any = await Promise.race([
           api.getTestimonials(),
           new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Fetch timeout')), 8000)
+            setTimeout(() => reject(new Error('Fetch timeout after 15 seconds')), 15000)
           )
         ]);
         
