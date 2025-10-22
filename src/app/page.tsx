@@ -393,69 +393,76 @@ export default function Home() {
             </div>
           ) : testimonials.length > 0 ? (
             <div className="relative">
-              {/* Carousel Container */}
-              <div className="overflow-hidden">
-                <div className="flex gap-6 md:gap-8 transition-transform duration-500" 
-                  style={{ transform: `translateX(-${testimonialIndex * (100 / 3)}%)` }}>
-                  {testimonials.map((testimonial, idx) => (
-                    <div
-                      key={testimonial.id}
-                      className="flex-shrink-0 w-full md:w-1/3 bg-white rounded-2xl p-6 md:p-8 shadow-lg hover:shadow-2xl transition transform hover:scale-105 hover:-translate-y-2 border-t-4 border-blue-500 group"
-                    >
-                      <div className="flex items-center mb-4 md:mb-6">
-                        {testimonial.photo ? (
-                          <img
-                            src={testimonial.photo}
-                            alt={testimonial.name}
-                            className="w-12 md:w-16 h-12 md:h-16 rounded-full object-cover mr-3 md:mr-4 transform group-hover:scale-125 transition"
-                          />
-                        ) : (
-                          <div className="text-4xl md:text-5xl mr-3 md:mr-4 transform group-hover:scale-125 transition">👤</div>
-                        )}
-                        <div>
-                          <h4 className="font-bold text-slate-900 text-sm md:text-base">{testimonial.name}</h4>
-                          <p className="text-xs md:text-sm text-slate-600">{testimonial.position}</p>
-                        </div>
+              {/* Testimonial Card - Single Display */}
+              <div className="max-w-2xl mx-auto">
+                <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition transform duration-300 border-t-4 border-blue-500 group min-h-96 flex flex-col justify-between">
+                  {/* Testimonial Content */}
+                  <div>
+                    <div className="flex items-center mb-6 md:mb-8">
+                      {testimonials[testimonialIndex]?.photo ? (
+                        <img
+                          src={testimonials[testimonialIndex].photo}
+                          alt={testimonials[testimonialIndex].name}
+                          className="w-16 md:w-20 h-16 md:h-20 rounded-full object-cover mr-4 md:mr-6 transform group-hover:scale-125 transition"
+                        />
+                      ) : (
+                        <div className="text-6xl md:text-7xl mr-4 md:mr-6 transform group-hover:scale-125 transition">👤</div>
+                      )}
+                      <div>
+                        <h4 className="font-bold text-slate-900 text-lg md:text-xl">{testimonials[testimonialIndex]?.name}</h4>
+                        <p className="text-sm md:text-base text-slate-600">{testimonials[testimonialIndex]?.position}</p>
                       </div>
-                      <p className="text-slate-700 text-sm md:text-base mb-4 md:mb-6 italic">
-                        "{testimonial.description || `Testimonial from ${testimonial.name}`}"
-                      </p>
                     </div>
-                  ))}
+                    <p className="text-slate-700 text-base md:text-lg leading-relaxed italic">
+                      "{testimonials[testimonialIndex]?.description || `Testimonial from ${testimonials[testimonialIndex]?.name}`}"
+                    </p>
+                  </div>
+
+                  {/* Star Rating */}
+                  <div className="flex gap-1 mt-6">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400 text-xl">★</span>
+                    ))}
+                  </div>
                 </div>
               </div>
 
               {/* Navigation Buttons */}
               <button
-                onClick={() => setTestimonialIndex(Math.max(0, testimonialIndex - 1))}
-                disabled={testimonialIndex === 0}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 md:-ml-12 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl"
-                aria-label="Previous testimonials"
+                onClick={() => setTestimonialIndex(testimonialIndex === 0 ? testimonials.length - 1 : testimonialIndex - 1)}
+                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 md:-ml-12 bg-blue-600 hover:bg-blue-700 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl shadow-lg"
+                aria-label="Previous testimonial"
               >
                 ‹
               </button>
               
               <button
-                onClick={() => setTestimonialIndex(Math.min(testimonials.length - 3, testimonialIndex + 1))}
-                disabled={testimonialIndex >= testimonials.length - 3}
-                className="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 md:-mr-12 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl"
-                aria-label="Next testimonials"
+                onClick={() => setTestimonialIndex(testimonialIndex === testimonials.length - 1 ? 0 : testimonialIndex + 1)}
+                className="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 md:-mr-12 bg-blue-600 hover:bg-blue-700 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl shadow-lg"
+                aria-label="Next testimonial"
               >
                 ›
               </button>
 
-              {/* Indicators */}
-              <div className="flex justify-center gap-2 mt-8">
-                {testimonials.length > 3 && Array.from({ length: Math.ceil(testimonials.length / 3) }).map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setTestimonialIndex(idx)}
-                    className={`rounded-full transition-all ${
-                      idx === Math.floor(testimonialIndex / 3) ? 'bg-blue-600 w-3 h-3' : 'bg-slate-300 w-2 h-2'
-                    }`}
-                    aria-label={`Go to testimonial group ${idx + 1}`}
-                  />
-                ))}
+              {/* Indicators - Dots for each testimonial */}
+              {testimonials.length > 1 && (
+                <div className="flex justify-center gap-2 mt-10">
+                  {testimonials.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setTestimonialIndex(idx)}
+                      className={`rounded-full transition-all ${
+                        idx === testimonialIndex ? 'bg-blue-600 w-3 h-3' : 'bg-slate-300 w-2 h-2'
+                      }`}
+                      aria-label={`Go to testimonial ${idx + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Counter */}
+              <div className="text-center mt-6 text-slate-600 text-sm">
+                {testimonialIndex + 1} / {testimonials.length}
               </div>
             </div>
           ) : (
