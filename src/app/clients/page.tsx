@@ -80,7 +80,7 @@ export default function ClientsPage() {
                         className="max-h-full max-w-full object-contain group-hover:scale-110 transition"
                       />
                     </div>
-                    <p className="text-xs md:text-sm font-semibold text-slate-900 text-center line-clamp-2">{client.name}</p>
+                    {/* <p className="text-xs md:text-sm font-semibold text-slate-900 text-center line-clamp-2">{client.name}</p> */}
                   </div>
                 </div>
               ))}
