@@ -88,45 +88,43 @@ export default function LegalDocumentsPage() {
         </div>
       </section>
 
-      {/* Document Detail Modal */}
+      {/* Document Detail Modal - Fullscreen */}
       {selectedDocument && (
         <div
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 backdrop-blur-md"
+          className="fixed inset-0 bg-black/98 z-50 flex flex-col backdrop-blur-sm"
           onClick={() => setSelectedDocument(null)}
         >
-          <div
-            className="bg-white rounded-2xl overflow-hidden max-w-2xl w-full shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white flex justify-between items-start">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold">{selectedDocument.title}</h2>
-                <p className="text-blue-100 text-sm mt-2">Legal Document</p>
-              </div>
-              <button
-                onClick={() => setSelectedDocument(null)}
-                className="text-white text-3xl font-light hover:opacity-75 transition"
-              >
-                ✕
-              </button>
-            </div>
+          {/* Close Button */}
+          <div className="absolute top-4 right-4 md:top-6 md:right-6 z-60">
+            <button
+              onClick={() => setSelectedDocument(null)}
+              className="text-white bg-black/50 hover:bg-black/80 rounded-full p-3 md:p-4 transition text-2xl md:text-3xl w-12 h-12 md:w-16 md:h-16 flex items-center justify-center"
+            >
+              ✕
+            </button>
+          </div>
 
-            {/* Modal Body */}
-            <div className="p-8 max-h-96 overflow-y-auto">
-              {selectedDocument.image && (
-                <div className="mb-6 rounded-lg overflow-hidden bg-slate-100">
-                  <img
-                    src={selectedDocument.image}
-                    alt={selectedDocument.title}
-                    className="w-full h-auto object-contain max-h-64"
-                  />
-                </div>
-              )}
-              <p className="text-slate-700 text-center text-sm mb-4">
-                Document Preview
-              </p>
-            </div>
+          {/* Fullscreen Document Display */}
+          <div className="flex-1 flex items-center justify-center p-4 md:p-8 overflow-auto">
+            {selectedDocument.image ? (
+              <img
+                src={selectedDocument.image}
+                alt={selectedDocument.title}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+            ) : (
+              <div className="text-center text-white">
+                <div className="text-8xl mb-4">📄</div>
+                {/* <p className="text-2xl font-semibold">{selectedDocument.title}</p> */}
+              </div>
+            )}
+          </div>
+
+          {/* Document Info Footer */}
+          <div className="bg-gradient-to-t from-black/80 to-transparent p-4 md:p-6 text-white text-center">
+            {/* <h2 className="text-xl md:text-2xl font-bold">{selectedDocument.title}</h2> */}
+            <p className="text-sm md:text-base text-gray-300 mt-2">Legal Document</p>
           </div>
         </div>
       )}

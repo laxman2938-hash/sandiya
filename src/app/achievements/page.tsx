@@ -111,7 +111,7 @@ export default function AchievementsPage() {
                   </div>
                   {/* Hover overlay with title */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4">
-                    <p className="text-white font-bold text-sm md:text-base line-clamp-2">{achievement.title}</p>
+                    {/* <p className="text-white font-bold text-sm md:text-base line-clamp-2">{achievement.title}</p> */}
                   </div>
                 </div>
               ))}

@@ -12,6 +12,7 @@ export default function ActiveDemandLetterPage() {
   const [demands, setDemands] = useState<DemandLetter[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchDemandLetters = async () => {
@@ -53,7 +54,7 @@ export default function ActiveDemandLetterPage() {
               {demands.map((demand) => (
                 <button
                   key={demand.id}
-                  onClick={() => {}}
+                  onClick={() => demand.image && setSelectedImage(demand.image)}
                   className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition transform hover:scale-105 cursor-pointer"
                 >
                   <div className="relative bg-slate-200 h-96 overflow-hidden">
@@ -80,6 +81,40 @@ export default function ActiveDemandLetterPage() {
           )}
         </div>
       </section>
+
+      {/* Fullscreen Image Modal */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setSelectedImage(null)}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 transition z-60"
+            aria-label="Close"
+          >
+            ✕
+          </button>
+
+          {/* Image Container */}
+          <div
+            className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={selectedImage}
+              alt="Fullscreen demand letter"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+
+          {/* Click anywhere to close hint */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm">
+            Click outside or press ✕ to close
+          </div>
+        </div>
+      )}
     </main>
   );
 }
