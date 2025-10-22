@@ -1,20 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
-export async function PUT(request: NextRequest, { params }: any) {
+interface Params {
+  params: Promise<{ id: string }>;
+}
+
+export async function PUT(request: NextRequest, { params }: Params) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
     const body = await request.json();
 
     const testimonial = await prisma.testimonial.update({
-      where: { id },
-      // Cast to any to avoid IDE type cache issues on description field
-      data: ({
+      where: { id: parseInt(id) },
+      data: {
         name: body.name || undefined,
         position: body.position || undefined,
         photo: body.photo || undefined,
         description: body.description || undefined,
-      } as any),
+      },
     });
 
     return NextResponse.json(testimonial);
@@ -27,17 +30,17 @@ export async function PUT(request: NextRequest, { params }: any) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: any) {
+export async function DELETE(request: NextRequest, { params }: Params) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
 
     await prisma.testimonial.delete({
-      where: { id }
+      where: { id: parseInt(id) },
     });
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
-      message: 'Testimonial deleted'
+      message: 'Testimonial deleted successfully',
     });
   } catch (error) {
     console.error('Delete testimonial error:', error);
