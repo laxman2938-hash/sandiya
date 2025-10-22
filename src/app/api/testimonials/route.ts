@@ -9,13 +9,7 @@ export async function GET() {
     // Add timeout to prevent long-running queries
     const testimonials = await Promise.race([
       prisma.testimonial.findMany({
-        select: {
-          id: true,
-          name: true,
-          position: true,
-          photo: true,
-          description: true,
-        },
+        // Avoid TS issues with stale Prisma types by not using select here
         take: 10, // Limit results to prevent large payloads
       }),
       new Promise((_, reject) =>
@@ -23,8 +17,19 @@ export async function GET() {
       ),
     ]) as any;
 
+    // Shape response to only expose needed fields
+    const shaped = Array.isArray(testimonials)
+      ? testimonials.map((t: any) => ({
+          id: t.id,
+          name: t.name,
+          position: t.position,
+          photo: t.photo ?? null,
+          description: t.description ?? null,
+        }))
+      : testimonials;
+
     // Return with cache headers
-    const response = NextResponse.json(testimonials);
+    const response = NextResponse.json(shaped);
     response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
     return response;
   } catch (error) {
@@ -49,12 +54,13 @@ export async function POST(request: Request) {
     }
 
     const testimonial = await prisma.testimonial.create({
+      // Avoid strict type mismatch on environments with stale Prisma types
       data: {
         name,
         position,
-        photo: photo || null,
-        description: description || null
-      }
+        photo: photo ?? null,
+        ...(typeof description !== 'undefined' ? { description: description ?? null } : {}),
+      } as any,
     });
 
     return NextResponse.json(testimonial, { status: 201 });

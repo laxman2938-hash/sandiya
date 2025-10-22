@@ -8,12 +8,13 @@ export async function PUT(request: NextRequest, { params }: any) {
 
     const testimonial = await prisma.testimonial.update({
       where: { id },
-      data: {
+      // Cast to any to avoid IDE type cache issues on description field
+      data: ({
         name: body.name || undefined,
         position: body.position || undefined,
         photo: body.photo || undefined,
-        description: body.description || undefined
-      }
+        description: body.description || undefined,
+      } as any),
     });
 
     return NextResponse.json(testimonial);

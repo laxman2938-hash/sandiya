@@ -117,6 +117,7 @@ async function main() {
 
   // Create Testimonials
   await prisma.testimonial.createMany({
+    // Cast to any to avoid IDE type cache issues on description field
     data: [
       {
         name: 'Sita Gurung',
@@ -131,7 +132,7 @@ async function main() {
         description: 'Working with Sandiya HR was a game-changer for my career. They connected me with a leading tech company, and the support throughout the process was exceptional. Truly professionals in their field!',
       },
     ],
-  });
+  } as any);
 
   // Create Demand Letters
   await prisma.demandLetter.createMany({
