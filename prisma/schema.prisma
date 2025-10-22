@@ -16,6 +16,7 @@ model GalleryImage {
   id          Int       @id @default(autoincrement())
   title       String
   image       String
+  createdAt   DateTime  @default(now())
 
 
   @@map("gallery_images")
@@ -29,6 +30,7 @@ model TeamMember {
   name          String
   designation   String?
   image         String
+  createdAt     DateTime  @default(now())
 
 
   @@map("team_members")
@@ -39,6 +41,7 @@ model EmploymentCategory {
   id            Int       @id @default(autoincrement())
   title         String
   image         String
+  createdAt     DateTime  @default(now())
 
 
   @@map("employment_categories")
@@ -55,6 +58,7 @@ model LegalDocument {
   id            Int       @id @default(autoincrement())
   title         String
   image         String
+  createdAt     DateTime  @default(now())
 
   @@map("legal_documents")
 }
@@ -64,6 +68,7 @@ model Achievement {
   id            Int       @id @default(autoincrement())
   title         String
   image         String
+  createdAt     DateTime  @default(now())
 
 
   @@map("achievements")
@@ -74,6 +79,7 @@ model Client {
   id            Int       @id @default(autoincrement())
   name          String
   logo          String
+  createdAt     DateTime  @default(now())
 
 
   @@map("clients")
@@ -93,23 +99,27 @@ model ContactMessage {
   @@map("contact_messages")
 }
 
-// Testimonials / Success Stories
-model Testimonial {
-  id            Int       @id @default(autoincrement())
-  name          String
-  position      String
-  photo         String?
-  description   String?   @db.Text  // Testimonial text/feedback
 
+// Testimonials
+model Testimonial {
+  id          Int       @id @default(autoincrement())
+  name        String
+  position    String
+  photo       String?
+  description String?  @db.Text
+  createdAt   DateTime @default(now())
 
   @@map("testimonials")
 }
+
+
 
 // Active Demand Letters
 model DemandLetter {
   id            Int       @id @default(autoincrement())
   title         String
   image         String
+  createdAt     DateTime  @default(now())
 
 
   @@map("demand_letters")
