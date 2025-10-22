@@ -130,39 +130,44 @@ export default function Home() {
               idx === currentSlide ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
           >
-            {/* Mobile: Background Image with Content Overlay */}
+            {/* Mobile: Background Image with Content Overlay - Inspired by Nexgenovate Design */}
             <div 
               className="md:hidden absolute inset-0 w-full h-full"
               style={{
-                backgroundImage: `url(${slide.image})`,
+                backgroundImage: `linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(55, 65, 181, 0.80) 100%), url(${slide.image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
               }}
             >
-              {/* Gradient Overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70"></div>
-              
-              {/* Mobile Content */}
-              <div className="relative z-10 h-full w-full px-4 py-12 sm:py-16 flex flex-col justify-center text-center">
-                <span className="inline-block bg-blue-500/30 backdrop-blur-md border border-blue-400/30 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 mb-2 sm:mb-3 text-xs sm:text-xs font-semibold text-white w-fit mx-auto">
-                  ✨ {idx === 0 ? 'Welcome to Sandiya HR' : idx === 1 ? 'Our Commitment' : 'Join Our Community'}
+              {/* Mobile Content - Clean Nexgenovate-style layout */}
+              <div className="relative z-10 h-full w-full px-4 sm:px-5 py-10 sm:py-14 flex flex-col justify-center items-center text-center space-y-5 sm:space-y-6">
+                {/* Tagline */}
+                <span className="inline-block bg-blue-400/20 border border-blue-300/40 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm font-semibold text-blue-50 w-fit mx-auto">
+                  ✨ {idx === 0 ? 'Ethical Recruitment' : idx === 1 ? 'Zero Cost Policy' : 'Global Opportunities'}
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 leading-tight text-white drop-shadow-lg">
+
+                {/* Main Heading - Bold and Clear */}
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight text-white drop-shadow-lg max-w-sm">
                   {slide.title}
                 </h1>
-                <p className="text-xs sm:text-sm text-blue-100 mb-5 sm:mb-6 max-w-sm mx-auto drop-shadow-md">
+
+                {/* Subtitle */}
+                <p className="text-sm sm:text-base text-blue-50 drop-shadow-md max-w-sm leading-relaxed">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col gap-2 sm:gap-2.5 justify-center">
+
+                {/* CTA Buttons - Improved spacing and sizing */}
+                <div className="flex flex-col gap-3 w-full max-w-xs pt-2 sm:pt-3">
                   <Link
                     href="/gallery"
-                    className="bg-white text-blue-900 px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-xs sm:text-sm w-full text-center"
+                    className="bg-white text-blue-900 px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold hover:bg-blue-50 transition duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base w-full text-center shadow-lg hover:shadow-xl"
                   >
-                    View Our Work
+                    View Our Work →
                   </Link>
                   <Link
                     href="/contact"
-                    className="border-2 border-white text-white px-5 sm:px-6 py-2 sm:py-2.5 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-xs sm:text-sm w-full text-center"
+                    className="border-2 border-white text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition duration-300 text-sm sm:text-base w-full text-center shadow-lg hover:shadow-xl"
                   >
                     Get in Touch
                   </Link>
@@ -170,68 +175,69 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Desktop: Gradient Background with Side-by-side Layout */}
-            <div className={`hidden md:flex bg-gradient-to-br ${slide.color} h-full w-full flex-row items-center justify-center overflow-hidden relative`}>
-              {/* Animated Background Orbs */}
-              <div className="absolute top-0 right-0 w-72 md:w-96 h-72 md:h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 6s ease-in-out infinite' }}></div>
-              <div className="absolute -bottom-8 left-0 w-72 md:w-96 h-72 md:h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{ animation: 'float 8s ease-in-out infinite 2s' }}></div>
+            {/* Desktop: Gradient Background with Side-by-side Layout - Nexgenovate Inspired */}
+            <div 
+              className="hidden md:block absolute inset-0 w-full h-full"
+              style={{
+                backgroundImage: `linear-gradient(135deg, #1e3a8a 0%, #3741b5 50%, #1e1b4b 100%), url(${slide.image})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'right',
+                backgroundAttachment: 'fixed',
+              }}
+            >
+              {/* Desktop Content - Clean Nexgenovate-Inspired Layout */}
+              <div className="relative z-10 h-full w-full grid grid-cols-1 lg:grid-cols-2 gap-12 px-8 lg:px-14 xl:px-20 py-24 lg:py-28 items-center">
+                {/* Left side: Text content - Bold and Clear */}
+                <div className="flex flex-col justify-center items-start text-left space-y-7">
+                  {/* Badge/Tag */}
+                  <div className="inline-block">
+                    <span className="bg-blue-400/25 border border-blue-300/50 rounded-full px-5 py-2 text-sm font-semibold text-blue-100 flex items-center gap-2 backdrop-blur-sm">
+                      ✨ {idx === 0 ? 'Ethical Recruitment' : idx === 1 ? 'Zero Cost Policy' : 'Global Opportunities'}
+                    </span>
+                  </div>
 
-              {/* Container for content - prevents overlapping */}
-              <div className="w-full h-full flex flex-row items-center justify-center relative z-10">
-                {/* Left Side - Text Content */}
-                <div className="w-1/2 px-6 lg:px-8 py-8 flex flex-col justify-center text-left">
-                  <span className="inline-block bg-blue-500/20 backdrop-blur-md border border-blue-400/30 rounded-full px-4 md:px-4 py-1 md:py-2 mb-4 md:mb-4 text-sm font-semibold text-white w-fit">
-                    ✨ {idx === 0 ? 'Welcome to Sandiya HR' : idx === 1 ? 'Our Commitment' : 'Join Our Community'}
-                  </span>
-                  <h1 className="text-4xl lg:text-5xl font-bold mb-5 leading-tight text-white">
+                  {/* Main Heading - Large and Bold */}
+                  <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white drop-shadow-lg">
                     {slide.title}
                   </h1>
-                  <p className="text-base text-blue-100 mb-8 max-w-xl">
+
+                  {/* Subtitle/Description */}
+                  <p className="text-lg lg:text-xl text-blue-50 drop-shadow-md max-w-xl leading-relaxed">
                     {slide.subtitle}
                   </p>
-                  <div className="flex flex-row gap-3 justify-start">
+
+                  {/* CTA Buttons - Prominent and Spacious */}
+                  <div className="flex gap-5 pt-6 items-center">
                     <Link
                       href="/gallery"
-                      className="bg-white text-blue-900 px-6 md:px-6 py-2.5 rounded-lg font-bold hover:bg-blue-50 transition transform hover:scale-105 hover:shadow-2xl text-sm"
+                      className="bg-white text-blue-900 px-10 py-3.5 rounded-lg font-bold hover:bg-blue-50 transition duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-base flex items-center gap-2"
                     >
-                      View Our Work
+                      View Our Work →
                     </Link>
                     <Link
                       href="/contact"
-                      className="border-2 border-white text-white px-6 md:px-6 py-2.5 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition text-sm"
+                      className="border-2 border-white text-white px-10 py-3.5 rounded-lg font-bold hover:bg-white hover:text-blue-900 transition duration-300 shadow-lg hover:shadow-xl text-base"
                     >
                       Get in Touch
                     </Link>
                   </div>
                 </div>
 
-                {/* Right Side - Image Section */}
-                <div className="w-1/2 px-6 lg:px-8 py-8 flex items-center justify-center">
-                  <div className="relative w-full max-w-md h-72">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl opacity-20 blur-2xl -z-10"></div>
-                    <div className="relative h-full w-full rounded-2xl overflow-hidden border-2 border-white/20 backdrop-blur-xl shadow-2xl transform hover:scale-105 transition duration-500">
-                      <img
-                        src={slide.image}
-                        alt={slide.title}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300 bg-black/40 backdrop-blur-sm">
-                        <div className="text-6xl transform hover:scale-125 transition animate-bounce">
-                          {idx === 0 ? '🌍' : idx === 1 ? '💰' : '🎯'}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {/* Right side: Image - Professional Display */}
+                <div className="flex items-center justify-center">
+                  <img
+                    src={slide.image}
+                    alt={slide.title}
+                    className="w-full h-96 lg:h-full object-cover rounded-xl shadow-2xl transform hover:scale-105 transition duration-500"
+                  />
                 </div>
               </div>
             </div>
           </div>
         ))}
 
-        {/* Slider Navigation Dots */}
-        <div className="absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20 flex gap-2 md:gap-3">
+        {/* Slider Navigation Dots - Hidden on Mobile */}
+        <div className="hidden md:flex absolute bottom-6 md:bottom-10 left-1/2 transform -translate-x-1/2 z-20 gap-2 md:gap-3">
           {sliderImages.map((_, idx) => (
             <button
               key={idx}
@@ -244,17 +250,17 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Slider Navigation Arrows */}
+        {/* Slider Navigation Arrows - Hidden on Mobile */}
         <button
           onClick={() => setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length)}
-          className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
+          className="hidden md:block absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
           aria-label="Previous slide"
         >
           ←
         </button>
         <button
           onClick={() => setCurrentSlide((prev) => (prev + 1) % sliderImages.length)}
-          className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
+          className="hidden md:block absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 text-white p-1.5 md:p-3 rounded-full transition text-lg md:text-xl"
           aria-label="Next slide"
         >
           →
