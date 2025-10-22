@@ -12,7 +12,8 @@ export default function TestimonialsAdmin() {
   const [formData, setFormData] = useState({
     name: '',
     position: '',
-    photo: ''
+    photo: '',
+    description: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -36,7 +37,7 @@ export default function TestimonialsAdmin() {
   }
 
   function resetForm() {
-    setFormData({ name: '', position: '', photo: '' });
+    setFormData({ name: '', position: '', photo: '', description: '' });
     setEditingId(null);
   }
 
@@ -44,7 +45,8 @@ export default function TestimonialsAdmin() {
     setFormData({
       name: testimonial.name,
       position: testimonial.position,
-      photo: testimonial.photo || ''
+      photo: testimonial.photo || '',
+      description: testimonial.description || ''
     });
     setEditingId(testimonial.id);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -159,6 +161,19 @@ export default function TestimonialsAdmin() {
             />
           </div>
 
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Description / Testimonial Text
+            </label>
+            <textarea
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
+              placeholder="Enter the testimonial text or feedback..."
+              rows={5}
+            />
+          </div>
+
           <button type="submit" className="w-full px-6 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition">
             {editingId ? 'Update Testimonial' : 'Add Testimonial'}
           </button>
@@ -185,7 +200,10 @@ export default function TestimonialsAdmin() {
                 )}
                 <div className="p-4">
                   <h3 className="font-bold text-lg text-gray-800">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{testimonial.position}</p>
+                  <p className="text-sm text-gray-600 mb-2">{testimonial.position}</p>
+                  {testimonial.description && (
+                    <p className="text-sm text-gray-700 mb-4 line-clamp-3">{testimonial.description}</p>
+                  )}
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleEdit(testimonial)}

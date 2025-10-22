@@ -99,6 +99,7 @@ model Testimonial {
   name          String
   position      String
   photo         String?
+  description   String?   @db.Text  // Testimonial text/feedback
 
 
   @@map("testimonials")

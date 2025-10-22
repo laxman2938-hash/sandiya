@@ -122,11 +122,13 @@ async function main() {
         name: 'Sita Gurung',
         position: 'Hospitality Sector Employee',
         photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop',
+        description: 'Sandiya HR helped me secure an amazing opportunity in the hospitality sector abroad. Their ethical approach and zero-cost policy made the entire process hassle-free. I highly recommend their services!',
       },
       {
         name: 'Mamta Shrestha',
         position: 'Global Tech Solutions',
         photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop',
+        description: 'Working with Sandiya HR was a game-changer for my career. They connected me with a leading tech company, and the support throughout the process was exceptional. Truly professionals in their field!',
       },
     ],
   });

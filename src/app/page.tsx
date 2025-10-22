@@ -417,8 +417,8 @@ export default function Home() {
                           <p className="text-xs md:text-sm text-slate-600">{testimonial.position}</p>
                         </div>
                       </div>
-                      <p className="text-slate-700 text-sm md:text-base mb-4 md:mb-6">
-                        Testimonial from {testimonial.name} - {testimonial.position}
+                      <p className="text-slate-700 text-sm md:text-base mb-4 md:mb-6 italic">
+                        "{testimonial.description || `Testimonial from ${testimonial.name}`}"
                       </p>
                     </div>
                   ))}

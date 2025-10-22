@@ -14,6 +14,7 @@ export async function GET() {
           name: true,
           position: true,
           photo: true,
+          description: true,
         },
         take: 10, // Limit results to prevent large payloads
       }),
@@ -38,7 +39,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, position, photo } = body;
+    const { name, position, photo, description } = body;
 
     if (!name || !position) {
       return NextResponse.json(
@@ -51,7 +52,8 @@ export async function POST(request: Request) {
       data: {
         name,
         position,
-        photo: photo || null
+        photo: photo || null,
+        description: description || null
       }
     });
 

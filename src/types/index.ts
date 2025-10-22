@@ -59,6 +59,7 @@ export interface Testimonial {
   name: string;
   position: string;
   photo?: string;
+  description?: string;
 }
 
 // Demand Letters

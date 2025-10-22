@@ -11,7 +11,8 @@ export async function PUT(request: NextRequest, { params }: any) {
       data: {
         name: body.name || undefined,
         position: body.position || undefined,
-        photo: body.photo || undefined
+        photo: body.photo || undefined,
+        description: body.description || undefined
       }
     });
 
