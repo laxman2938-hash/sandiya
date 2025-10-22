@@ -8,6 +8,20 @@ import { getMultilingualText } from '@/lib/utils';
 import Link from 'next/link';
 import Image from 'next/image';
 
+// Add animation styles
+const animationStyles = `
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`;
+
 export default function AchievementsPage() {
   const t = useTranslations();
   const locale = useLocale();
@@ -45,6 +59,7 @@ export default function AchievementsPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white via-blue-50 to-white">
+      <style>{animationStyles}</style>
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-900 text-white py-12 md:py-24 px-4 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
