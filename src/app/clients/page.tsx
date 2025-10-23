@@ -18,6 +18,7 @@ export default function ClientsPage() {
       try {
         setLoading(true);
         const response: any = await api.getClients();
+        console.log('Clients response:', response);
         setClients(Array.isArray(response) ? response : response.data?.results || response.data || []);
       } catch (err) {
         setError(t('common.error'));
@@ -28,7 +29,7 @@ export default function ClientsPage() {
     };
 
     fetchClients();
-  }, [t]);
+  }, []);
 
   if (loading) return (
     <div className="text-center py-20 md:py-40 text-xl md:text-2xl text-slate-600">
