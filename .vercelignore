@@ -17,9 +17,7 @@ node_modules/@prisma/engines/
 node_modules/@*/*/lib/*.so*
 node_modules/**/lib/*.so*
 
-# Ignore uploaded media and local cache
-public/uploads/
-public/robots.txt
+# Ignore local cache (but keep uploaded media for deployment)
 .next/cache/
 
 # Misc
