@@ -32,14 +32,14 @@ export default function ClientsPage() {
         setClients(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error('Error fetching clients:', err);
-        setError(t('common.error'));
+        setError('Something went wrong');
       } finally {
         setLoading(false);
       }
     };
 
     fetchClients();
-  }, [t]);
+  }, []);
 
   if (loading) return (
     <div className="text-center py-20 md:py-40 text-xl md:text-2xl text-slate-600">
