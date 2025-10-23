@@ -17,19 +17,29 @@ export default function ClientsPage() {
     const fetchClients = async () => {
       try {
         setLoading(true);
-        const response: any = await api.getClients();
-        console.log('Clients response:', response);
-        setClients(Array.isArray(response) ? response : response.data?.results || response.data || []);
+        console.log('Fetching clients from:', '/api/clients');
+        const response = await fetch('/api/clients');
+        console.log('Fetch response status:', response.status);
+        
+        if (!response.ok) {
+          console.error('API returned status:', response.status);
+          setError('Failed to fetch clients');
+          return;
+        }
+        
+        const data = await response.json();
+        console.log('Clients data received:', data);
+        setClients(Array.isArray(data) ? data : []);
       } catch (err) {
-        setError(t('common.error'));
         console.error('Error fetching clients:', err);
+        setError(t('common.error'));
       } finally {
         setLoading(false);
       }
     };
 
     fetchClients();
-  }, []);
+  }, [t]);
 
   if (loading) return (
     <div className="text-center py-20 md:py-40 text-xl md:text-2xl text-slate-600">
@@ -37,7 +47,10 @@ export default function ClientsPage() {
     </div>
   );
   if (error) return (
-    <div className="text-center py-20 md:py-40 text-red-600 text-xl md:text-2xl">{error}</div>
+    <div className="text-center py-20 md:py-40 text-red-600 text-xl md:text-2xl">
+      <div>{error}</div>
+      <div className="text-sm mt-4 text-slate-600">Check browser console for details</div>
+    </div>
   );
 
   return (
