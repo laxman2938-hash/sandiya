@@ -1,14 +1,25 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 
+const headers = {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Cache-Control': 'public, max-age=60, s-maxage=60',
+};
+
 export async function GET() {
   try {
     const clients = await prisma.client.findMany();
-    return NextResponse.json(clients);
+    return NextResponse.json(clients, { headers });
   } catch (error) {
     console.error('Clients API error:', error);
-    return NextResponse.json([], { status: 500 });
+    return NextResponse.json([], { status: 500, headers });
   }
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, { headers });
 }
 
 export async function POST(request: Request) {

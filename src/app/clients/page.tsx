@@ -17,8 +17,15 @@ export default function ClientsPage() {
     const fetchClients = async () => {
       try {
         setLoading(true);
-        console.log('Fetching clients from:', '/api/clients');
-        const response = await fetch('/api/clients');
+        console.log('Fetching clients from:', window.location.origin + '/api/clients');
+        
+        const response = await fetch(window.location.origin + '/api/clients', {
+          method: 'GET',
+          headers: { 'Accept': 'application/json' },
+          mode: 'cors',
+          cache: 'no-store',
+        });
+        
         console.log('Fetch response status:', response.status);
         
         if (!response.ok) {
@@ -30,7 +37,7 @@ export default function ClientsPage() {
         const data = await response.json();
         console.log('Clients data received:', data);
         setClients(Array.isArray(data) ? data : []);
-      } catch (err) {
+      } catch (err: any) {
         console.error('Error fetching clients:', err);
         setError('Something went wrong');
       } finally {
