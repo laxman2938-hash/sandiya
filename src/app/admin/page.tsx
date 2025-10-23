@@ -7,7 +7,6 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState({
     teamMembers: 0,
     clients: 0,
-    testimonials: 0,
     gallery: 0,
     achievements: 0,
     demandLetters: 0,
@@ -19,10 +18,9 @@ export default function AdminDashboard() {
     // Fetch stats from APIs
     const fetchStats = async () => {
       try {
-        const [team, clients, testimonials, gallery, achievements, demands, legal, messages] = await Promise.all([
+        const [team, clients, gallery, achievements, demands, legal, messages] = await Promise.all([
           fetch('/api/team-members').then(r => r.json()),
           fetch('/api/clients').then(r => r.json()),
-          fetch('/api/testimonials').then(r => r.json()),
           fetch('/api/gallery').then(r => r.json()),
           fetch('/api/achievements').then(r => r.json()),
           fetch('/api/demand-letters').then(r => r.json()),
@@ -33,7 +31,6 @@ export default function AdminDashboard() {
         setStats({
           teamMembers: team.data?.length || 0,
           clients: clients.data?.length || 0,
-          testimonials: testimonials.data?.length || 0,
           gallery: gallery.data?.length || 0,
           achievements: achievements.data?.length || 0,
           demandLetters: demands.data?.length || 0,
@@ -51,7 +48,6 @@ export default function AdminDashboard() {
   const cards = [
     { label: 'Team Members', count: stats.teamMembers, icon: '👥', href: '/admin/team-members', color: 'from-blue-500 to-blue-600' },
     { label: 'Clients', count: stats.clients, icon: '🏢', href: '/admin/clients', color: 'from-indigo-500 to-indigo-600' },
-    { label: 'Testimonials', count: stats.testimonials, icon: '⭐', href: '/admin/testimonials', color: 'from-purple-500 to-purple-600' },
     { label: 'Gallery Images', count: stats.gallery, icon: '🖼️', href: '/admin/gallery', color: 'from-pink-500 to-pink-600' },
     { label: 'Achievements', count: stats.achievements, icon: '🏆', href: '/admin/achievements', color: 'from-yellow-500 to-yellow-600' },
     { label: 'Demand Letters', count: stats.demandLetters, icon: '📋', href: '/admin/demand-letters', color: 'from-green-500 to-green-600' },

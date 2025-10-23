@@ -57,7 +57,6 @@ export default function AdminLayout({
     { label: 'Dashboard', href: '/admin', icon: '📊' },
     { label: 'Team Members', href: '/admin/team-members', icon: '👥' },
     { label: 'Clients', href: '/admin/clients', icon: '🏢' },
-    { label: 'Testimonials', href: '/admin/testimonials', icon: '⭐' },
     { label: 'Gallery', href: '/admin/gallery', icon: '🖼️' },
     { label: 'Achievements', href: '/admin/achievements', icon: '🏆' },
     { label: 'Demand Letters', href: '/admin/demand-letters', icon: '📋' },
