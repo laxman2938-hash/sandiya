@@ -1,0 +1,33 @@
+# Ignore local build and developer files
+node_modules/
+.next/
+.vscode/
+.DS_Store
+coverage/
+
+# Ignore local env files (set/env in Vercel dashboard instead)
+.env.local
+.env.development
+.env.test
+
+# Ignore large binaries and prisma engines
+**/*.node
+node_modules/.prisma/
+node_modules/@prisma/engines/
+node_modules/@*/*/lib/*.so*
+node_modules/**/lib/*.so*
+
+# Ignore uploaded media and local cache
+public/uploads/
+public/robots.txt
+.next/cache/
+
+# Misc
+npm-debug.log
+yarn-error.log
+.pnp.*
+
+# Keep package.json, prisma schema and source code
+!package.json
+!prisma/schema.prisma
+!src/**
