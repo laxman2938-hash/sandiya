@@ -53,15 +53,6 @@ export interface ContactMessage {
   status?: string;
 }
 
-// Testimonials
-export interface Testimonial {
-  id: number;
-  name: string;
-  position: string;
-  photo?: string;
-  description?: string;
-}
-
 // Demand Letters
 export interface DemandLetter {
   id: number;

@@ -77,10 +77,6 @@ export const api = {
   // Clients
   getClients: () => fetchAPI('/clients'),
 
-  // Testimonials
-  getTestimonials: () => fetchAPI('/testimonials'),
-  getTestimonial: (id: number) => fetchAPI(`/testimonials/${id}`),
-
   // Demand Letters
   getDemandLetters: () => fetchAPI('/demand-letters'),
   getDemandLetter: (id: number) => fetchAPI(`/demand-letters/${id}`),

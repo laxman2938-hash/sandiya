@@ -4,7 +4,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { api } from '@/lib/api';
-import { Testimonial } from '@/types';
 import type { Metadata } from 'next';
 
 // This would normally be in a separate metadata file, but for dynamic pages we export it here
@@ -15,9 +14,6 @@ export default function Home() {
   const locale = useLocale();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [testimonialsLoading, setTestimonialsLoading] = useState(true);
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
 
   const sliderImages = [
     {
@@ -55,41 +51,8 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch testimonials from database
+  // Fetch data on component mount
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        setTestimonialsLoading(true);
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
-        
-        const response: any = await Promise.race([
-          api.getTestimonials(),
-          new Promise((_, reject) => 
-            setTimeout(() => reject(new Error('Fetch timeout after 15 seconds')), 15000)
-          )
-        ]);
-        
-        clearTimeout(timeoutId);
-        
-        const data = Array.isArray(response) ? response : response?.data?.results || response?.data || [];
-        setTestimonials(Array.isArray(data) ? data : []);
-      } catch (err) {
-        console.error('Error fetching testimonials:', err);
-        // Don't break the page - just show no testimonials
-        setTestimonials([]);
-      } finally {
-        setTestimonialsLoading(false);
-      }
-    };
-    
-    // Add a small delay to prevent race conditions
-    const timer = setTimeout(() => {
-      fetchTestimonials();
-    }, 500);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   const stats = [
     { number: '10K+', label: 'Successful Placements', icon: '✅' },
@@ -373,103 +336,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Testimonials - Carousel Style with 3 Cards */}
-      <section className="py-12 md:py-24 px-4 bg-gradient-to-b from-blue-50 via-white to-blue-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <span className="inline-block text-blue-600 font-semibold text-xs md:text-sm uppercase tracking-widest mb-2 md:mb-4">Success Stories</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 md:mb-4 text-slate-900">
-              What Our Clients Say
-            </h2>
-            <p className="text-base md:text-xl text-slate-600 px-2">Real stories from successful placements</p>
-          </div>
-
-          {testimonialsLoading ? (
-            <div className="text-center py-12">
-              <div className="text-slate-600">Loading testimonials...</div>
-            </div>
-          ) : testimonials.length > 0 ? (
-            <div className="relative">
-              {/* Testimonial Card - Single Display */}
-              <div className="max-w-2xl mx-auto">
-                <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition transform duration-300 border-t-4 border-blue-500 group min-h-96 flex flex-col justify-between">
-                  {/* Testimonial Content */}
-                  <div>
-                    <div className="flex items-center mb-6 md:mb-8">
-                      {testimonials[testimonialIndex]?.photo ? (
-                        <img
-                          src={testimonials[testimonialIndex].photo}
-                          alt={testimonials[testimonialIndex].name}
-                          className="w-16 md:w-20 h-16 md:h-20 rounded-full object-cover mr-4 md:mr-6 transform group-hover:scale-125 transition"
-                        />
-                      ) : (
-                        <div className="text-6xl md:text-7xl mr-4 md:mr-6 transform group-hover:scale-125 transition">👤</div>
-                      )}
-                      <div>
-                        <h4 className="font-bold text-slate-900 text-lg md:text-xl">{testimonials[testimonialIndex]?.name}</h4>
-                        <p className="text-sm md:text-base text-slate-600">{testimonials[testimonialIndex]?.position}</p>
-                      </div>
-                    </div>
-                    <p className="text-slate-700 text-base md:text-lg leading-relaxed italic">
-                      "{testimonials[testimonialIndex]?.description || `Testimonial from ${testimonials[testimonialIndex]?.name}`}"
-                    </p>
-                  </div>
-
-                  {/* Star Rating */}
-                  <div className="flex gap-1 mt-6">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-xl">★</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Navigation Buttons */}
-              <button
-                onClick={() => setTestimonialIndex(testimonialIndex === 0 ? testimonials.length - 1 : testimonialIndex - 1)}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -ml-6 md:-ml-12 bg-blue-600 hover:bg-blue-700 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl shadow-lg"
-                aria-label="Previous testimonial"
-              >
-                ‹
-              </button>
-              
-              <button
-                onClick={() => setTestimonialIndex(testimonialIndex === testimonials.length - 1 ? 0 : testimonialIndex + 1)}
-                className="absolute right-0 top-1/2 -translate-y-1/2 -mr-6 md:-mr-12 bg-blue-600 hover:bg-blue-700 text-white p-3 md:p-4 rounded-full transition transform hover:scale-110 font-bold text-xl shadow-lg"
-                aria-label="Next testimonial"
-              >
-                ›
-              </button>
-
-              {/* Indicators - Dots for each testimonial */}
-              {testimonials.length > 1 && (
-                <div className="flex justify-center gap-2 mt-10">
-                  {testimonials.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setTestimonialIndex(idx)}
-                      className={`rounded-full transition-all ${
-                        idx === testimonialIndex ? 'bg-blue-600 w-3 h-3' : 'bg-slate-300 w-2 h-2'
-                      }`}
-                      aria-label={`Go to testimonial ${idx + 1}`}
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* Counter */}
-              <div className="text-center mt-6 text-slate-600 text-sm">
-                {testimonialIndex + 1} / {testimonials.length}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-12">
-              <p className="text-slate-600 text-lg">No testimonials available at this moment.</p>
-            </div>
-          )}
         </div>
       </section>
 
