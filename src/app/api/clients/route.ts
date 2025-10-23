@@ -7,31 +7,7 @@ export async function GET() {
     return NextResponse.json(clients);
   } catch (error) {
     console.error('Clients API error:', error);
-    
-    // Fallback mock data
-    const mockClients = [
-      {
-        id: 1,
-        name: 'Global Tech Solutions',
-        logo: 'https://via.placeholder.com/200x100?text=Global+Tech',
-        description: { en: 'Leading tech company', np: 'प्रमुख प्रযुक्ति कंपनी' },
-        website: 'https://example.com',
-        since: 2015
-      },
-      {
-        id: 2,
-        name: 'International Hospitality',
-        logo: 'https://via.placeholder.com/200x100?text=Hospitality',
-        description: { en: 'Hospitality services provider', np: 'आतिथ्य सेवा प्रदानकर्ता' },
-        website: 'https://example.com',
-        since: 2016
-      },
-    ];
-    
-    return NextResponse.json({ 
-      data: mockClients,
-      success: true 
-    });
+    return NextResponse.json([], { status: 500 });
   }
 }
 
