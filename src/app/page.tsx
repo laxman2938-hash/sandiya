@@ -51,9 +51,6 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fetch data on component mount
-  useEffect(() => {
-
   const stats = [
     { number: '10K+', label: 'Successful Placements', icon: '✅' },
     { number: '10+', label: 'Years Experience', icon: '⭐' },
